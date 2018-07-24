@@ -34,7 +34,7 @@ Each section will have an illumination.
 
 * **Banyc** - *Initial work* - [Banyc](https://github.com/Banyc)
 
-See also the list of [contributors](https://github.com/Banyc/TensorFlow_practise/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Banyc/TensorFlow_practice/graphs/contributors) who participated in this project.
 
 ## License
 
