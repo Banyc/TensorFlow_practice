@@ -116,38 +116,6 @@ if __name__ == "__main__":
     main()
 
 # OUTPUT
-# [Running] python "c:\Users\fsXian\PycharmProjects\TensorFlow\TensorFlow实战Google深度学习框架\mnist识别\test\LeNet-5_test\eval.py"
-# 2018-07-15 12:05:07.180055: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 12:05:07.183894: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE2 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 12:05:07.187403: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 12:05:07.190964: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 12:05:07.194191: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 12:05:07.197651: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 12:05:07.202639: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 12:05:07.206088: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
-# D:\ProgramData\Anaconda3\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-#   from ._conv import register_converters as _register_converters
-# Extracting ./mnist\train-images-idx3-ubyte.gz
-# Extracting ./mnist\train-labels-idx1-ubyte.gz
-# Extracting ./mnist\t10k-images-idx3-ubyte.gz
-# Extracting ./mnist\t10k-labels-idx1-ubyte.gz
-# 0.9738
-
-# [Done] exited with code=0 in 128.309 seconds
-
-# [Running] python "c:\Users\fsXian\PycharmProjects\TensorFlow\TensorFlow实战Google深度学习框架\mnist识别\test\LeNet-5_test\train.py"
-# 2018-07-15 13:45:19.247721: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 13:45:19.251929: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE2 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 13:45:19.255678: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 13:45:19.259351: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 13:45:19.262955: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 13:45:19.266222: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 13:45:19.269678: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
-# 2018-07-15 13:45:19.273404: W c:\l\tensorflow_1501918863922\work\tensorflow-1.2.1\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
-# Extracting ./mnist\train-images-idx3-ubyte.gz
-# Extracting ./mnist\train-labels-idx1-ubyte.gz
-# Extracting ./mnist\t10k-images-idx3-ubyte.gz
-# Extracting ./mnist\t10k-labels-idx1-ubyte.gz
 # train step:  0
 # global_step:  0
 # learning rate:  0.001

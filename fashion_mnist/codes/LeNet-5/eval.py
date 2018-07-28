@@ -9,7 +9,7 @@ import train, inference
 LOG_NAME = "log.txt"
 
 
-def evalidate(mnist):
+def evaluate(mnist):
     x = tf.placeholder(
         tf.float32,
         [None,
@@ -69,7 +69,7 @@ def log(global_step, accuracy):
 
 def main(argv=None):
     mnist = input_data.read_data_sets(train.DATABASE_PATH)
-    global_step, accuracy = evalidate(mnist)
+    global_step, accuracy = evaluate(mnist)
     log(global_step, accuracy)
     return 0
 

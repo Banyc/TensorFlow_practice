@@ -31,6 +31,7 @@ def train(train_data, test_data):
 	# cross_entropy_mean = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y, labels=tf.argmax(y_, 1)))
 	cross_entropy_mean = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=y, labels=y_))
     # 最后一层用来分类的softmax和sigmoid有什么不同？
+	# answer: https://github.com/zhengwh/captcha-tensorflow
 	
 	loss = cross_entropy_mean #+ tf.add_n(tf.get_collection('losses'))
 	
