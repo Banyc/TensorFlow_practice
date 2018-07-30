@@ -13,15 +13,18 @@ OUTPUT_NODE = num_classes = 3
 # batch_size = 90
  
 def inference(input_tensor, input_size, is_train):
-    if is_train:
+    if is_train is not None:
         dropout_keep_prob = 0.5
+        logger = process.get_logger()
+        logger.debug("dropout: %g" % dropout_keep_prob)
     else:
         dropout_keep_prob = 1.0
     # embedding layer
     with tf.device('/cpu:0'), tf.name_scope("embedding"):
         embedding_size = 128
-        W = tf.Variable(tf.random_uniform([input_size, embedding_size], -1.0, 1.0))
+        W = tf.Variable(tf.random_uniform([input_size, embedding_size], minval=-1.0, maxval=1.0), name="embedding")
         embedded_chars = tf.nn.embedding_lookup(W, input_tensor)
+        # embedded_chars = tf.nn.dropout(embedded_chars, dropout_keep_prob)
         embedded_chars_expanded = tf.expand_dims(embedded_chars, -1)
     # convolution + maxpool layer
     num_filters = 128

@@ -68,4 +68,20 @@ class PTBModel(object):
             )
             logits = tf.matmul(output, weight) + bias
         
-        loss = 
+        loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
+            labels=tf.reshape(self.targets, [-1]),
+            logits=logits
+        )
+        self.cost = tf.reduce_sum(loss) / batch_size
+        self.final_state = state
+
+        if not is_training: return
+
+        trainable_variables = tf.trainable_variables()
+        grads, _ = tf.clip_by_global_norm(
+            tf.gradients(self.cost, trainable_variables), const.MAX_GRAD_NORM
+        )
+        optimizer = tf.train.GradientDescentOptimizer(learning_rate=1.0)
+        self.train_op = optimizer.apply_gradients(
+            list(zip(grads, trainable_variables))
+        )

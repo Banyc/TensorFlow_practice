@@ -5,7 +5,7 @@ Explanation: https://blog.csdn.net/u013713117/article/details/55049808
 
 # Introduction
 
-to classify sentiment of different comments.
+to classify sentiment of different comments on Twitter.
 
 Poor performance.
 

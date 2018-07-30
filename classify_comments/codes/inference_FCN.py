@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-# #TODO understand reference!(aborted)
-# NLP in CNN (delay)
-# https://www.csdn.net/article/2015-11-11/2826192
-# compose a fully connected network
+# a fully connected network
 import tensorflow as tf
 
 # INPUT_NODE = 784

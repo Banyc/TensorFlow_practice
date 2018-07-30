@@ -1,0 +1,6 @@
+model_checkpoint_path: "name2sex.model-7800"
+all_model_checkpoint_paths: "name2sex.model-7600"
+all_model_checkpoint_paths: "name2sex.model-7650"
+all_model_checkpoint_paths: "name2sex.model-7700"
+all_model_checkpoint_paths: "name2sex.model-7750"
+all_model_checkpoint_paths: "name2sex.model-7800"

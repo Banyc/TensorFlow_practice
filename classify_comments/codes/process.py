@@ -30,7 +30,7 @@ def __get_n_random_line(file_name, n=150):
     file.close()
     return lines
  
- 
+
 def get_test_dataset():
     lex = __get_lexcion()
     with open(const.TEST_PATH, encoding='latin-1') as f:
@@ -95,6 +95,8 @@ def get_logger():
     # logger.setLevel(logging.DEBUG)
     return logger
 
+
+# one_hot
 def get_vec_from_text(text):
     tweet = text
     lemmatizer = WordNetLemmatizer()

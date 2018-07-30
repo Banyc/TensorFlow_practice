@@ -30,24 +30,28 @@ def train():
         name="x-input")
     y_ = tf.placeholder(
         tf.float32, [None, inference.OUTPUT_NODE], name="y_-input")
+    is_train = tf.placeholder("bool")
 
     # the last accuracy, for evaluate
     pre_acc = tf.Variable(0.0, False, name="pre_accuracy")
 
     # regularizer = tf.contrib.layers.l2_regularizer(const.REGULARIZATION_RATE)
-    y = inference.inference(x, process.get_lex_len(), None)
+    y = inference.inference(x, process.get_lex_len(), is_train)
+
     global_step = tf.Variable(0, trainable=False, name="global_step")
 
     # variable_averages = tf.train.ExponentialMovingAverage(
     #     MOVING_AVERAGE_DECAY, global_step)
     # variable_averages_op = variable_averages.apply(
     #     tf.trainable_variables())
+
     # cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
     #     logits=y, labels=tf.argmax(y_, 1))
     cross_entropy = tf.nn.softmax_cross_entropy_with_logits(
         logits=y, labels=y_)
     cross_entropy_mean = tf.reduce_mean(cross_entropy)
     loss = cross_entropy_mean #+ tf.add_n(tf.get_collection("losses"))
+
     # learning_rate = tf.train.exponential_decay(
     #     LEARNING_RATE_BASE,
     #     global_step,
@@ -55,8 +59,9 @@ def train():
     #     LEARNING_RATE_DECAY)
     learning_rate = const.LEARNING_RATE_BASE
     # train_step = tf.train.GradientDescentOptimizer(learning_rate)\
-    train_step = tf.train.AdamOptimizer(learning_rate)\
-                    .minimize(loss, global_step=global_step)
+    optimizer = tf.train.AdamOptimizer(learning_rate)
+    grads_and_vars = optimizer.compute_gradients(loss)
+    train_op = optimizer.apply_gradients(grads_and_vars)
     # with tf.control_dependencies([train_step, variable_averages_op]):
     #     train_op = tf.no_op(name="train")
 
@@ -81,11 +86,13 @@ def train():
         # for i in range(const.TRAINING_STEPS):
         while True:
             xs, ys = process.get_next_batch(40)
-            _, loss_value, step = sess.run([train_step, loss, global_step],
-                                           feed_dict={x: xs, y_: ys})
+            # _, loss_value, step = sess.run([train_step, loss, global_step],
+            #                                feed_dict={x: xs, y_: ys, is_train: True})
+            _, loss_value, step = sess.run([train_op, loss, global_step],
+                                           feed_dict={x: xs, y_: ys, is_train: True})
 
             if is_first_round:
-                cur_acc = sess.run(accuracy, {x: test_xs[0:50], y_: test_ys[0:50]})  # 过大会内存爆炸
+                cur_acc = sess.run(accuracy, {x: test_xs[0:50], y_: test_ys[0:50], is_train: False})  # 过大会内存爆炸
                 logger.info("After the first train, %s training step(s), validation "
                     "accuracy = %g" % (step, cur_acc))
                 logger.info("While pre_accuracy is: %g" % pre_acc.eval())
@@ -102,7 +109,7 @@ def train():
                 
                 # for evaluate
                 # current_acc
-                cur_acc, test_loss = sess.run((accuracy, loss), {x: test_xs[0:50], y_: test_ys[0:50]})
+                cur_acc, test_loss = sess.run((accuracy, loss), {x: test_xs[0:50], y_: test_ys[0:50], is_train: False})
                 logger.info("After %s training step(s), validation "
                     "accuracy = %g, loss = %g" % (step, cur_acc, test_loss))
                 logger.info("While pre_accuracy is: %g" % pre_acc.eval())

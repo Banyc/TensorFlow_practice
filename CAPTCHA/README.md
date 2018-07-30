@@ -65,6 +65,7 @@ Suggestions are greatly needed.
 
 - "./codes/const.py" is a set of shared constants.
 
-- "./all_data_128_64/" contains testing and training data.
+- "./CAPTCHA_data/" contains testing and training data. 
+    - has been zipped into "./CAPTCHA_data.7z"
 
 - "./model/" saved model.
