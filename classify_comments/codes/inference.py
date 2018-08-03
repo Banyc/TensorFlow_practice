@@ -1,4 +1,4 @@
-import tensorflow as tf 
+import tensorflow as tf
 import const, process
 
 # input_size = len(lex)
@@ -7,12 +7,12 @@ OUTPUT_NODE = num_classes = 3
 
 # X = tf.placeholder(tf.int32, [None, input_size])
 # Y = tf.placeholder(tf.float32, [None, num_classes])
- 
+
 # dropout_keep_prob = tf.placeholder(tf.float32)
- 
+
 # batch_size = 90
- 
-def inference(input_tensor, input_size, is_train):
+
+def inference(input_tensor, input_size, is_train):  # input_size here is too large
     if is_train is not None:
         dropout_keep_prob = 0.5
         logger = process.get_logger()
@@ -39,7 +39,7 @@ def inference(input_tensor, input_size, is_train):
             h = tf.nn.relu(tf.nn.bias_add(conv, b))
             pooled = tf.nn.max_pool(h, ksize=[1, input_size - filter_size + 1, 1, 1], strides=[1, 1, 1, 1], padding='VALID')
             pooled_outputs.append(pooled)
- 
+
     num_filters_total = num_filters * len(filter_sizes)
     h_pool = tf.concat(pooled_outputs, 3)
     h_pool_flat = tf.reshape(h_pool, [-1, num_filters_total])
@@ -51,5 +51,5 @@ def inference(input_tensor, input_size, is_train):
         W = tf.get_variable("W", shape=[num_filters_total, num_classes], initializer=tf.contrib.layers.xavier_initializer())
         b = tf.Variable(tf.constant(0.1, shape=[num_classes]))
         output = tf.nn.xw_plus_b(h_drop, W, b)
-        
+
     return output

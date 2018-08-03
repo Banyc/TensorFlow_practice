@@ -2,8 +2,8 @@
 
 
 # decode('gbk').encode('utf-8')
-# import tensorflow as tf 
-import numpy as np 
+# import tensorflow as tf
+import numpy as np
 import const
 import logging
 
@@ -28,17 +28,17 @@ class Data_Process:
                         self.train_y.append([0, 1])  # 男
                     else:
                         self.train_y.append([1, 0])  # 女
-        
+
         self.max_name_length = max([len(name) for name in self.train_x])
         print("最长名字的字符数: ", self.max_name_length)
         self.max_name_length = 8
-    
+
         # 数据已shuffle
         # shuffle_indices = np.random.permutation(np.arange(len(train_y)))
         # train_x = train_x[shuffle_indices]
         # train_y = train_y[shuffle_indices]
-            
-        
+
+
         # 词汇表（参看聊天机器人练习）
         counter = 0
         vocabulary = {}
@@ -50,21 +50,20 @@ class Data_Process:
                     vocabulary[word] += 1
                 else:
                     vocabulary[word] = 1
-        
-        vocabulary_list = [' '] + sorted(vocabulary, key=vocabulary.get, reverse=True)
+
+        vocabulary_list = [' '] + sorted(vocabulary, key=vocabulary.get, reverse=True)  # the first vocab is a space
         print(len(vocabulary_list))
         self.voc_len = len(vocabulary_list)
 
-        
+
         # 字符串转为向量形式
-        vocab = dict([(x, y) for (y, x) in enumerate(vocabulary_list)])
+        vocab = dict([(x, y) for (y, x) in enumerate(vocabulary_list)])  # {key: its index}
         self.train_x_vec = []
         for name in self.train_x:
             name_vec = []
             for word in name:
                 name_vec.append(vocab.get(word))
-            # while len(name_vec) < self.max_name_length:
-            while len(name_vec) <= self.max_name_length:
+            while len(name_vec) < self.max_name_length:
                 name_vec.append(0)
             self.train_x_vec.append(name_vec)
         self.train_x_len = len(self.train_x_vec)
@@ -74,7 +73,7 @@ class Data_Process:
         shuffle_indices = np.random.permutation(np.arange(len(self.train_y)))
         self.train_x_vec = self.train_x_vec[shuffle_indices]
         self.train_y = self.train_y[shuffle_indices]
-        
+
 
     def get_train_batch(self, batch_size=64):
         num_batch = self.train_x_len // batch_size
@@ -110,16 +109,17 @@ def get_vocab(train_xs):
                 vocabulary[word] += 1
             else:
                 vocabulary[word] = 1
-    
+
     vocabulary_list = [' '] + sorted(vocabulary, key=vocabulary.get, reverse=True)
     return vocabulary_list
 
-            
+
 # for test
+# len(x_vec) == max_name_length, x_vec is an id_list
 def get_word_vec(text_list, vocabulary_list=None, max_name_length=None):
     if vocabulary_list == None:
         Train = Data_Process()
-        
+
         vocabulary_list = get_vocab(Train.train_x)
         max_name_length = Train.max_name_length
     # 字符串转为向量形式
@@ -130,7 +130,6 @@ def get_word_vec(text_list, vocabulary_list=None, max_name_length=None):
         for word in name:
             name_vec.append(vocab.get(word))
         while len(name_vec) < max_name_length:
-            name_vec.append(0)
+            name_vec.append(0)  # why append 0?
         x_vec.append(name_vec)
     return (x_vec, max_name_length, len(vocabulary_list))
-    
